@@ -14,6 +14,7 @@ class TweetController extends Controller
     public function index()
     {
         //
+        return view('tweet.index');
     }
 
     /**
@@ -34,7 +35,11 @@ class TweetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return Tweet::create([
+            'content' => $data['content'],
+            'user_id' => $data['user_id'],
+        ]);
+
     }
 
     /**

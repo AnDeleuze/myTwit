@@ -18,5 +18,5 @@ window.Vue = require('vue');
 Vue.component('tweet-component', require('./components/tweetComponent.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#tweet'
 });
