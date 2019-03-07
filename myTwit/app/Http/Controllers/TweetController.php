@@ -24,7 +24,9 @@ class TweetController extends Controller
      */
     public function create()
     {
-        return view('tweet.create');
+        $user_id = 1;
+        $tweets = Tweet::where('user_id', $user_id)->orderBy('created_at', 'desc')->get();
+        return view('tweet.create')->with(compact('tweets'));
     }
 
     /**
