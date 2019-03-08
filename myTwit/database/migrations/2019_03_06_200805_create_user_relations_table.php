@@ -19,6 +19,7 @@ class CreateUserRelationsTable extends Migration
             $table->timestamps();
             $table->foreign('from_user_id')->references('id')->on('users');
             $table->foreign('to_user_id')->references('id')->on('users');
+            $table->unique(['from_user_id', 'to_user_id']);
         });
     }
 
