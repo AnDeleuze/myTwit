@@ -20,5 +20,6 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/', 'UserController@index')->name('user_home');
     Route::post('/user/follow', 'UserController@follow');
     Route::post('/user/follow_request', 'UserController@follow_request');
+
     Route::resource('/tweet', 'TweetController');
 });
