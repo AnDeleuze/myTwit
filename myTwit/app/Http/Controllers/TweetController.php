@@ -43,7 +43,7 @@ class TweetController extends Controller
             'user_id' => $user_id,
         ]);
 
-        return redirect()->route('tweet.create');
+        return redirect()->to(request()->headers->get('referer'));
     }
 
     /**
