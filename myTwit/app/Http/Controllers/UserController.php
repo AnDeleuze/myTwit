@@ -11,9 +11,10 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     public function index() {
+        $user = Auth::user();
         $user_id = Auth::id();
-        // 自分の投稿
-        $tweets = Tweet::where('user_id', $user_id)->get();
+        // タイムラインを作る
+        $tweets = Tweet::find_following_tweets($user);
         // フォロー中のユーザー
         // フォローされているユーザー
         // 自分以外のユーザー
