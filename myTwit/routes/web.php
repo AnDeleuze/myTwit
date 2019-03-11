@@ -21,4 +21,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/user', 'UserController@index')->name('user_home');
 Route::post('/user/follow', 'UserController@follow');
+Route::post('/user/follow_request', 'UserController@follow_request');
 Route::resource('/tweet', 'TweetController');

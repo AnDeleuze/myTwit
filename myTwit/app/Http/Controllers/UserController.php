@@ -31,4 +31,16 @@ class UserController extends Controller
 
         return redirect()->route('user_home');
     }
+
+    public function follow_request(Request $request) {
+        $user_id = 1;
+        $from_follow_user_id = $request->from_follow_user_id;
+
+        UserRelation::create([
+            'from_user_id' => $from_follow_user_id,
+            'to_user_id' => $user_id,
+        ]);
+
+        return redirect()->route('user_home');
+    }
 }

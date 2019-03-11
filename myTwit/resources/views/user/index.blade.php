@@ -9,10 +9,16 @@
 <ul>
     @foreach ($other_users as $user)
     <li>
+        {{ $user->name }}
         <form action="/user/follow" method="post">
-            {{ $user->name }} / <input type="submit" value="follow">
+             / <input type="submit" value="followする">
             {{ csrf_field() }}
             <input type="hidden" name="to_follow_user_id" value="{{ $user->id }}">
+        </form>
+        <form action="/user/follow_request" method="post">
+             / <input type="submit" value="followをお願いする">
+            {{ csrf_field() }}
+            <input type="hidden" name="from_follow_user_id" value="{{ $user->id }}">
         </form>
     </li>
     @endforeach
