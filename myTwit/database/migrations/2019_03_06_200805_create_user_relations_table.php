@@ -17,8 +17,8 @@ class CreateUserRelationsTable extends Migration
             $table->unsignedInteger('from_user_id');
             $table->unsignedInteger('to_user_id');
             $table->timestamps();
-            $table->foreign('from_user_id')->references('id')->on('users');
-            $table->foreign('to_user_id')->references('id')->on('users');
+            $table->foreign('from_user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('to_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unique(['from_user_id', 'to_user_id']);
         });
     }
