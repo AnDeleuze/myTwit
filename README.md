@@ -2,6 +2,13 @@
 
 Vue.jsの勉強のためにTwitter的なアプリを作る。
 
+## 初期設定
+
+```
+$ php artisan migrate
+$ php artisan db:seed
+```
+
 ## Framework
 
 Laravel 5.6
