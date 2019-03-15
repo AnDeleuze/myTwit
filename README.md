@@ -4,8 +4,10 @@ Vue.jsの勉強のためにTwitter的なアプリを作る。
 
 ## Framework
 
-Laravel 5.6?
+Laravel 5.6
+
 PHP7.1
+
 mysql
 
 ## 概要設計
@@ -15,7 +17,7 @@ mysql
 ツイートの表示
 →別ユーザーのツイート一覧
 
-## API設計
+## API設計※未実装
 
 /tweet/timeline # フォローしているユーザーのツイートを取得し、一覧表示
 
@@ -29,16 +31,17 @@ get
 ## DB設計
 
 - users
-    - id
-    - code(index)
+    - id (primary)
+    - code(unique)
     - name
-    - mail
+    - email
     - password
     - created
     - modified
 
-- user_tweets
-    - user_id
+- tweets
+    - id (primary)
+    - user_id(foreign->user_id)
     - content
     - created
     - modified
@@ -48,3 +51,4 @@ get
     - to_user_id(foreign->user_id, on delete cascade)
     - created
     - modified
+    - unique(from_user_id, to_user_id)
