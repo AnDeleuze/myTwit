@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Model\Tweet;
 
 class TweetController extends Controller
@@ -22,9 +23,9 @@ class TweetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $user_id = 1;
+        $user_id = Auth::id();
         $tweets = Tweet::where('user_id', $user_id)->orderBy('created_at', 'desc')->get();
         return view('tweet.create')->with(compact('tweets'));
     }
@@ -37,7 +38,7 @@ class TweetController extends Controller
      */
     public function store(Request $request)
     {
-        $user_id = 1;
+        $user_id = Auth::id();
         $tweet = Tweet::create([
             'content' => $request->content,
             'user_id' => $user_id,

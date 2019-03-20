@@ -26,4 +26,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function following_tweets() {
+        return $this->hasManyThrough(
+            'App\Model\Tweet', // アクセスしたいモデル名
+            'App\Model\UserRelation', // 仲介モデル名
+            'from_user_id', // 仲介モデルの外部キー
+            'user_id', // アクセスしたいモデルの外部キー
+            'id', // 元テーブルのローカルキー
+            'to_user_id' // 仲介するモデルのローカルキー
+        );
+    }
 }

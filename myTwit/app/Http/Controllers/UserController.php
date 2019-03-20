@@ -6,13 +6,15 @@ use Illuminate\Http\Request;
 use App\Model\Tweet;
 use App\Model\User;
 use App\Model\UserRelation;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     public function index() {
-        $user_id = 1;
-        // 自分の投稿
-        $tweets = Tweet::where('user_id', $user_id)->get();
+        $user = Auth::user();
+        $user_id = Auth::id();
+        // タイムラインを作る
+        $tweets = Tweet::find_following_tweets($user);
         // フォロー中のユーザー
         // フォローされているユーザー
         // 自分以外のユーザー
@@ -21,7 +23,7 @@ class UserController extends Controller
     }
 
     public function follow(Request $request) {
-        $user_id = 1;
+        $user_id = Auth::id();
         $to_follow_user_id = $request->to_follow_user_id;
 
         UserRelation::create([
@@ -33,7 +35,7 @@ class UserController extends Controller
     }
 
     public function follow_request(Request $request) {
-        $user_id = 1;
+        $user_id = Auth::id();
         $from_follow_user_id = $request->from_follow_user_id;
 
         UserRelation::create([
