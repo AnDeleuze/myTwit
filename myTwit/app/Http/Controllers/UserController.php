@@ -7,14 +7,15 @@ use App\Model\Tweet;
 use App\Model\User;
 use App\Model\UserRelation;
 use Illuminate\Support\Facades\Auth;
+use App\Repositories\TweetRepository;
 
 class UserController extends Controller
 {
-    public function index() {
+    public function index(Request $request, TweetRepository $tweetRepository) {
         $user = Auth::user();
         $user_id = Auth::id();
         // タイムラインを作る
-        $tweets = Tweet::find_following_tweets($user);
+        $tweets = $tweetRepository->make_timeline($user);
         // フォロー中のユーザー
         // フォローされているユーザー
         // 自分以外のユーザー
