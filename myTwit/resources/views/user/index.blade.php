@@ -10,7 +10,7 @@
 <h2>投稿</h2>
 <ul>
     @foreach ($tweets as $tweet)
-        <li>{{ $tweet->content }} / {{ $tweet->created_at }}</li>
+        <li>user_id: {{ $tweet->user_id }} <br> {{ $tweet->content }} <br> {{ $tweet->created_at }}</li>
     @endforeach
 </ul>
 
